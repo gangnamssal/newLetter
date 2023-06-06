@@ -10,6 +10,9 @@ const globalStype = css`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    background-color: #f0f1f4;
+    width: 100vw;
+    height: 90vh;
   }
 `;
 
