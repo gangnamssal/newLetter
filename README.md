@@ -24,6 +24,12 @@
    
    // emotion
    npm i @emotion/react
+   
+   // axios
+   npm i axios
+   
+   // datepicker
+   npm install @mui/x-date-pickers dayjs @mui/material
    ```
 
 3. 초기 폴더 구조
@@ -104,7 +110,7 @@
      ```
 
 
-### 3. 에러 해결
+### 2. 에러 해결
 
 - Emotion "you have tried to stringify object returned from css function" 에러 해결
 
@@ -128,5 +134,56 @@
   npm i @react-icons/all-files
   ```
 
+
+
+
+## 23.06.07
+
+---
+
+### 1. 구현 내용
+
+- gnb 버튼에 modal 나타내기 구현
+
+- mui datepicker 적용
+
   
+
+### 2. 에러 해결
+
+- Element implicitly has an 'any' type because expression of type 'string' can't be used to index type 'NationObject'.  No index signature with a parameter of type 'string' was found on type 'NationObject'.
+  - **원인**
+    - TypeScript는 기본적으로 객체의 프로퍼티를 읽을 때, `string`타입의 key 사용을 허용하지 않는다. 아래의 코드에서 에러가 발생한 이유는 `string literal`타입만 허용되는 곳에 string 타입을 사용했기 때문이다.
+  - **참고 블로그** 
+    - https://velog.io/@raccoon-ccoder/Error-TypeScript-Element-implicitly-has-an-any-type-because-expression-of-type-string-cant-be-used-to-index
+
+```typescript
+// 수정 전
+type Nation =
+  | "대한민국"
+  | "중국"
+  | "일본"
+  | "미국"
+  | "북한"
+  | "러시아"
+  | "프랑스"
+  | "영국";
+
+export type NationObject = Record<Nation, boolean>;
+
+
+// 수정 후
+export type NationObject = {
+  [key: string]: boolean;
+  대한민국: boolean;
+  중국: boolean;
+  일본: boolean;
+  미국: boolean;
+  북한: boolean;
+  러시아: boolean;
+  프랑스: boolean;
+  영국: boolean;
+};
+
+```
 

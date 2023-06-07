@@ -1,26 +1,24 @@
 import { create } from "zustand";
 
-interface GnbStoreType {
+interface Store {
   headline: string;
-  setHeadline: (headline: string) => void;
   datetime: string;
-  setDatetime: (datetime: string) => void;
   nation: (string | null)[];
-  setNation: (nation: string[]) => void;
+}
+
+interface GnbStoreType {
+  store: Store;
+  setStore: (store: Store) => void;
 }
 
 const gnbStore = create<GnbStoreType>((set) => ({
-  headline: "",
-  setHeadline: (headline) => {
-    set((state) => ({ ...state, headline }));
+  store: {
+    headline: "",
+    datetime: "",
+    nation: [],
   },
-  datetime: "",
-  setDatetime: (datetime) => {
-    set((state) => ({ ...state, datetime }));
-  },
-  nation: [],
-  setNation: (nation) => {
-    set((state) => ({ ...state, nation }));
+  setStore: (store) => {
+    set((state) => ({ ...state, store }));
   },
 }));
 

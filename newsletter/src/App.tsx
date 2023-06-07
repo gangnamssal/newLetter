@@ -2,7 +2,7 @@ import React from "react";
 import { css, Global } from "@emotion/react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import Gnb from "./components/Gnb";
+import Gnb from "./components/Gnb/Gnb";
 import HomeScreen from "./routers/HomeScreen";
 
 const globalStype = css`
