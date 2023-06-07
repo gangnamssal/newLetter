@@ -12,6 +12,8 @@ import GnbModal from "../Modal/GnbModal";
 const gnbStyle = css`
   width: 100vw;
   height: 10vh;
+  position: fixed;
+  top: 0;
   display: flex;
   align-items: center;
   background-color: white;
