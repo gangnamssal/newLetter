@@ -147,6 +147,14 @@
 
 - mui datepicker 적용
 
+- gnb 필터 기능 완료
+
+- tap bar 완료
+
+  - CSS 적용
+  - navigate 적용
+  
+  
   
 
 ### 2. 에러 해결
