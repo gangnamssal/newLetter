@@ -195,3 +195,28 @@ export type NationObject = {
 
 ```
 
+
+
+## 23.06.08
+
+---
+
+### 1. 에러 해결
+
+- 개발자 도구 콘솔에 lockdown-install.js가 뜨는 현상
+  - 갑자기 프로젝트를 실행했는데 콘솔에 "lockdown-install.js" warning이 발생하였다.
+  - 해결
+    - 크롬에서 metamask를 삭제하면 해결되었다.
+    - **참고** : https://stackoverflow.com/questions/76393186/what-is-causing-the-warning-removing-intrinsics-arrayprototype-toreversed-in
+
+	### 2. 구현 내용
+
+- text 줄바꿈 없애기
+
+  ```
+  white-space: nowrap;
+  ```
+
+- News 기사 card CSS 완료
+
+- 

@@ -17,6 +17,7 @@ const gnbStyle = css`
   display: flex;
   align-items: center;
   background-color: white;
+  z-index: 2;
 
   .gnb-button {
     width: auto;
