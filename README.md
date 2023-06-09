@@ -219,4 +219,15 @@ export type NationObject = {
 
 - News 기사 card CSS 완료
 
-- 
+- HomeScreen 컴포넌트 구조 완성
+
+
+
+## 23.06.09
+
+---
+
+### 1. 구현 내용
+
+- 무한 스크롤 로직 작성
+- 함수형 프로그래밍 무한 스크롤 로직에 적용
