@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-interface Store {
+export interface Store {
   headline: string;
   datetime: string;
   nation: (string | null)[];

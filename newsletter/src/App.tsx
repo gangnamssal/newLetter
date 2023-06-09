@@ -1,4 +1,3 @@
-import React from "react";
 import { css, Global } from "@emotion/react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
