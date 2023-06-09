@@ -61,7 +61,13 @@ function Gnb() {
   // 버튼 리스트
   const buttons = [
     {
-      title: store.headline ? store.headline : "전체 헤드라인",
+      title: store.headline
+        ? `${
+            store.headline.length > 7
+              ? `${store.headline.slice(0, 7)}...`
+              : store.headline
+          }`
+        : "전체 헤드라인",
       icons: GoSearch,
     },
     {
