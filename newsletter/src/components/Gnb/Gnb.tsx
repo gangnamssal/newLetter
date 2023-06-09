@@ -75,10 +75,10 @@ function Gnb() {
       icons: BiCalendarCheck,
     },
     {
-      title: store.nation.length
-        ? store.nation.length > 1
-          ? `${store.nation[0]} 외 ${store.nation.length - 1}개`
-          : `${store.nation[0]}`
+      title: store.nations.length
+        ? store.nations.length > 1
+          ? `${store.nations[0]} 외 ${store.nations.length - 1}개`
+          : `${store.nations[0]}`
         : "전체 국가",
       icons: null,
     },

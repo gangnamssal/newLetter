@@ -3,7 +3,7 @@ import { create } from "zustand";
 export interface Store {
   headline: string;
   datetime: string;
-  nation: (string | null)[];
+  nations: string[];
 }
 
 interface GnbStoreType {
@@ -15,7 +15,7 @@ const gnbStore = create<GnbStoreType>((set) => ({
   store: {
     headline: "",
     datetime: "",
-    nation: [],
+    nations: [],
   },
   setStore: (store) => {
     set((state) => ({ ...state, store }));
