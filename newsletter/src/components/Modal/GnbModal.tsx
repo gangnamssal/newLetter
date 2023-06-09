@@ -9,7 +9,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
 import gnbStore from "../../modules/GnbStore";
 import { NationObject, Prop } from "./GnbModalType";
-import { useNowDate } from "../../hooks/useNowDate";
+import { getNowDate } from "../../customs/getNowDate";
 
 const gnbModalStyle = (open: boolean) => css`
   width: 100%;
@@ -90,7 +90,7 @@ const gnbModalStyle = (open: boolean) => css`
 `;
 
 function GnbModal({ dialogRef }: Prop) {
-  const nowDate = useNowDate(); // 현재 날짜를 return하는 함수
+  const nowDate = getNowDate(); // 현재 날짜를 return하는 함수
 
   const [headline, handleHeadline] = useState<string>("");
   const [datetime, handleDatetime] = useState<string>("");

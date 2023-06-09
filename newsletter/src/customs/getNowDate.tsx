@@ -1,4 +1,4 @@
-export function useNowDate() {
+export function getNowDate() {
   const date = new Date();
 
   const YEAR = date.getFullYear();
