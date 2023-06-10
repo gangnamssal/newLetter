@@ -2,6 +2,7 @@ import { css, Global } from "@emotion/react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Gnb from "./components/Gnb/Gnb";
+import gnbStore from "./modules/GnbStore";
 import HomeScreen from "./routers/HomeScreen";
 import TabBar from "./components/TabBar/TabBar";
 import ScrapScreen from "./routers/ScrapScreen";
@@ -18,13 +19,15 @@ const globalStype = css`
 `;
 
 function App() {
+  const { store } = gnbStore();
+
   return (
     <>
       <Global styles={globalStype} />
       <Router>
         <Routes>
           {/* 전역 네비게이션 바 */}
-          <Route element={<Gnb />}>
+          <Route element={<Gnb store={store} />}>
             <Route element={<TabBar />}>
               <Route path="/" element={<HomeScreen />} />
             </Route>

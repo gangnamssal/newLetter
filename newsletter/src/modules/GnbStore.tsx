@@ -6,7 +6,7 @@ export interface Store {
   nations: string[];
 }
 
-interface GnbStoreType {
+export interface GnbStoreType {
   store: Store;
   setStore: (store: Store) => void;
 }
