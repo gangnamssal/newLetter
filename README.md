@@ -231,3 +231,56 @@ export type NationObject = {
 
 - 무한 스크롤 로직 작성
 - 함수형 프로그래밍 무한 스크롤 로직에 적용
+
+
+
+## 23.06.10
+
+---
+
+### 1. 에러 해결
+
+- fetchNextPage Type
+
+  - `useInfiniteQuery` 훅의 반환 타입을 나타냅니다. 
+
+  ```
+  fetchNextPage: UseInfiniteQueryResult["fetchNextPage"];
+  ```
+
+### 2. 구현
+
+- 무한 스크롤 로직 완성
+
+- CSS 글자 수 제한 - 2 줄을 넘어가면 ... 나오게 하기
+
+  ```
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  ```
+
+- 에러 처리 - Too Many Requests : 429
+
+- 기사 클릭 시 링크 처리
+
+  - 참고 : https://blog.hangyeong.com/17
+
+  ```
+  1. 현재 페이지에서 URL 열기
+  - window.location.href="링크"
+  
+  2. 새 창에서 URL 열기
+  - window.open("링크")
+  
+  3. 상위 프레임에 부를 때
+  - parent.location.href="링크"
+  
+  4. 팝업
+  - OpenWin_variety("링크","창 이름",width,height,출력x좌표,출력y좌표)
+  ```
+
+  

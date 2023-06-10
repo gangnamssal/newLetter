@@ -219,6 +219,7 @@ function GnbModal({ dialogRef }: Prop) {
             nations: nationArr,
           });
 
+          // 쿼리 죽이기
           queryClient.invalidateQueries([
             "home-screen-api",
             { headline, datetime, nations: nationArr },
