@@ -27,8 +27,11 @@ function App() {
           <Route element={<Gnb />}>
             <Route element={<TabBar />}>
               <Route path="/" element={<HomeScreen />} />
-              <Route path="/scrap" element={<ScrapScreen />} />
             </Route>
+          </Route>
+
+          <Route element={<TabBar />}>
+            <Route path="/scrap" element={<ScrapScreen />} />
           </Route>
         </Routes>
       </Router>
