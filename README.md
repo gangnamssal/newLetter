@@ -147,6 +147,14 @@
 
 - mui datepicker 적용
 
+- gnb 필터 기능 완료
+
+- tap bar 완료
+
+  - CSS 적용
+  - navigate 적용
+  
+  
   
 
 ### 2. 에러 해결
@@ -187,3 +195,92 @@ export type NationObject = {
 
 ```
 
+
+
+## 23.06.08
+
+---
+
+### 1. 에러 해결
+
+- 개발자 도구 콘솔에 lockdown-install.js가 뜨는 현상
+  - 갑자기 프로젝트를 실행했는데 콘솔에 "lockdown-install.js" warning이 발생하였다.
+  - 해결
+    - 크롬에서 metamask를 삭제하면 해결되었다.
+    - **참고** : https://stackoverflow.com/questions/76393186/what-is-causing-the-warning-removing-intrinsics-arrayprototype-toreversed-in
+
+	### 2. 구현 내용
+
+- text 줄바꿈 없애기
+
+  ```
+  white-space: nowrap;
+  ```
+
+- News 기사 card CSS 완료
+
+- HomeScreen 컴포넌트 구조 완성
+
+
+
+## 23.06.09
+
+---
+
+### 1. 구현 내용
+
+- 무한 스크롤 로직 작성
+- 함수형 프로그래밍 무한 스크롤 로직에 적용
+
+
+
+## 23.06.10
+
+---
+
+### 1. 에러 해결
+
+- fetchNextPage Type
+
+  - `useInfiniteQuery` 훅의 반환 타입을 나타냅니다. 
+
+  ```
+  fetchNextPage: UseInfiniteQueryResult["fetchNextPage"];
+  ```
+
+### 2. 구현
+
+- 무한 스크롤 로직 완성
+
+- CSS 글자 수 제한 - 2 줄을 넘어가면 ... 나오게 하기
+
+  ```
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  ```
+
+- 에러 처리 - Too Many Requests : 429
+
+- 기사 클릭 시 링크 처리
+
+  - 참고 : https://blog.hangyeong.com/17
+
+  ```
+  1. 현재 페이지에서 URL 열기
+  - window.location.href="링크"
+  
+  2. 새 창에서 URL 열기
+  - window.open("링크")
+  
+  3. 상위 프레임에 부를 때
+  - parent.location.href="링크"
+  
+  4. 팝업
+  - OpenWin_variety("링크","창 이름",width,height,출력x좌표,출력y좌표)
+  ```
+
+  

@@ -9,7 +9,8 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
 import gnbStore from "../../modules/GnbStore";
 import { NationObject, Prop } from "./GnbModalType";
-import { useNowDate } from "../../hooks/useNowDate";
+import { getNowDate } from "../../customs/getNowDate";
+import { useQueryClient } from "@tanstack/react-query";
 
 const gnbModalStyle = (open: boolean) => css`
   width: 100%;
@@ -89,8 +90,27 @@ const gnbModalStyle = (open: boolean) => css`
   }
 `;
 
+const nationInitialObj = {
+  대한민국: false,
+  중국: false,
+  일본: false,
+  미국: false,
+  북한: false,
+  러시아: false,
+  프랑스: false,
+  영국: false,
+};
+
+const yearDotMonthDotDate = (year: number, month: number, date: number) => {
+  return `${year}.${month < 10 ? `0${month}` : month}.${
+    date < 10 ? `0${date}` : date
+  }`;
+};
+
 function GnbModal({ dialogRef }: Prop) {
-  const nowDate = useNowDate(); // 현재 날짜를 return하는 함수
+  const nowDate = getNowDate("-"); // 현재 날짜를 return하는 함수
+  const { setStore } = gnbStore(); // 전역 상태
+  const queryClient = useQueryClient();
 
   const [headline, handleHeadline] = useState<string>("");
   const [datetime, handleDatetime] = useState<string>("");
@@ -98,18 +118,8 @@ function GnbModal({ dialogRef }: Prop) {
   const [datePickerValue, handleDatePickerValue] = useState<any>(
     dayjs(nowDate)
   );
-  const [nationObject, handleNationObject] = useState<NationObject>({
-    대한민국: false,
-    중국: false,
-    일본: false,
-    미국: false,
-    북한: false,
-    러시아: false,
-    프랑스: false,
-    영국: false,
-  });
-
-  const { setStore } = gnbStore(); // 전역 상태
+  const [nationObject, handleNationObject] =
+    useState<NationObject>(nationInitialObj);
 
   const { $y: year, $M: month, $D: date } = datePickerValue;
 
@@ -157,7 +167,7 @@ function GnbModal({ dialogRef }: Prop) {
                   handleOpenDatePicker(false);
                 }
                 handleDatetime(
-                  `${newValue.$y}.${newValue.$M + 1}.${newValue.$D}`
+                  yearDotMonthDotDate(newValue.$y, newValue.$M + 1, newValue.$D)
                 );
                 return newValue;
               })
@@ -206,8 +216,14 @@ function GnbModal({ dialogRef }: Prop) {
           setStore({
             headline: headline,
             datetime: datetime,
-            nation: nationArr,
+            nations: nationArr,
           });
+
+          // 쿼리 죽이기
+          queryClient.invalidateQueries([
+            "home-screen-api",
+            { headline, datetime, nations: nationArr },
+          ]);
 
           dialogRef.current?.close();
         }}

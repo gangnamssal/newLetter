@@ -17,6 +17,7 @@ const gnbStyle = css`
   display: flex;
   align-items: center;
   background-color: white;
+  z-index: 2;
 
   .gnb-button {
     width: auto;
@@ -60,7 +61,13 @@ function Gnb() {
   // 버튼 리스트
   const buttons = [
     {
-      title: store.headline ? store.headline : "전체 헤드라인",
+      title: store.headline
+        ? `${
+            store.headline.length > 7
+              ? `${store.headline.slice(0, 7)}...`
+              : store.headline
+          }`
+        : "전체 헤드라인",
       icons: GoSearch,
     },
     {
@@ -68,10 +75,10 @@ function Gnb() {
       icons: BiCalendarCheck,
     },
     {
-      title: store.nation.length
-        ? store.nation.length > 1
-          ? `${store.nation[0]} 외 ${store.nation.length - 1}개`
-          : `${store.nation[0]}`
+      title: store.nations.length
+        ? store.nations.length > 1
+          ? `${store.nations[0]} 외 ${store.nations.length - 1}개`
+          : `${store.nations[0]}`
         : "전체 국가",
       icons: null,
     },
