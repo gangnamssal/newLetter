@@ -283,4 +283,6 @@ export type NationObject = {
   - OpenWin_variety("링크","창 이름",width,height,출력x좌표,출력y좌표)
   ```
 
-  
+
+- Gnb 재사용을 위해 코드 수정
+- scrap 페이지 완료

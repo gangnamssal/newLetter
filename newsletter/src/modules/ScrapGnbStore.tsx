@@ -8,18 +8,18 @@ export interface Store {
 
 export interface GnbStoreType {
   store: Store;
-  setStore: (store: Store) => void;
+  setScrapStore: (store: Store) => void;
 }
 
-const gnbStore = create<GnbStoreType>((set) => ({
+const scrapGnbStore = create<GnbStoreType>((set) => ({
   store: {
     headline: "",
     datetime: "",
     nations: [],
   },
-  setStore: (store) => {
+  setScrapStore: (store) => {
     set((state) => ({ ...state, store }));
   },
 }));
 
-export default gnbStore;
+export default scrapGnbStore;

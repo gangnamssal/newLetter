@@ -1,12 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import { useRef } from "react";
 import { css } from "@emotion/react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { GoSearch } from "@react-icons/all-files/go/GoSearch";
 import { BiCalendarCheck } from "@react-icons/all-files/bi/BiCalendarCheck";
 
-import gnbStore from "../../modules/GnbStore";
 import GnbModal from "../Modal/GnbModal";
+import gnbStore, { Store } from "../../modules/GnbStore";
+import scrapGnbStore from "../../modules/ScrapGnbStore";
 
 // 버튼 스타일
 const gnbStyle = css`
@@ -54,9 +55,22 @@ const gnbStyle = css`
   }
 `;
 
-function Gnb() {
-  const { store } = gnbStore();
+function Gnb({ store }: { store: Store }) {
+  const { setStore } = gnbStore();
+  const { setScrapStore } = scrapGnbStore();
   const dialogRef = useRef<HTMLDialogElement>(null);
+
+  const pathName = useLocation().pathname;
+
+  // prop 시켜줄 setStore 함수를 결정
+  const propSetStore = () => {
+    switch (pathName) {
+      case "/":
+        return setStore;
+      default:
+        return setScrapStore;
+    }
+  };
 
   // 버튼 리스트
   const buttons = [
@@ -104,7 +118,7 @@ function Gnb() {
         {/* 모달 */}
         <div onClick={() => dialogRef.current?.close()}>
           <dialog className="dialog" ref={dialogRef}>
-            <GnbModal dialogRef={dialogRef} />
+            <GnbModal dialogRef={dialogRef} setStore={propSetStore()} />
           </dialog>
         </div>
       </nav>
