@@ -25,6 +25,7 @@ const setDateTime = (datetime: string) => {
     return {
       begin_date: datetime.replaceAll(".", ""),
       end_date: getNowDate(""),
+      sort: "oldest",
     };
   }
   return {};
@@ -102,6 +103,7 @@ function HomeScreenFetcer({ children }: Children) {
         const newPages = go(
           data.pages,
           L.map((d: Lmap) => d.data.response.docs),
+          L.flatten,
           takeAll
         );
 

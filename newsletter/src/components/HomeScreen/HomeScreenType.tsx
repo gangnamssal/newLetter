@@ -1,4 +1,5 @@
 import { ReactJSXElement } from "@emotion/react/types/jsx-namespace";
+import { UseInfiniteQueryResult } from "@tanstack/react-query";
 
 export interface Children {
   children: React.PropsWithChildren<ReactJSXElement>;
@@ -16,11 +17,38 @@ export interface ChangeNationName {
   영국: string;
 }
 
-interface Docs {
+interface Headline {
+  content_kicker: null | string;
+  kicker: null | string;
+  main: string;
+  name: null | string;
+  print_headline: null | string;
+  seo: null | string;
+  sub: null | string;
+}
+
+interface Person {
+  firstname: string;
+  lastname: string;
+  middlename: null | string;
+  organization: string;
+  qualifier: null | string;
+  rank: number;
+  role: string;
+  title: null | string;
+}
+
+interface Byline {
+  organization: null | string;
+  original: string;
+  person: Person[];
+}
+
+export interface Docs {
   abstract: string;
-  byline: object;
+  byline: Byline;
   document_type: string;
-  headline: object;
+  headline: Headline;
   keywords: object[];
   lead_paragraph: string;
   multimedia: object;
@@ -58,8 +86,13 @@ export interface Lmap {
   request: object;
 }
 
+interface Data {
+  pageParams?: number[];
+  pages: Docs[];
+}
+
 export interface Props {
-  data: object;
+  data: Data;
   hasNextPage: boolean;
-  fetchNextPage: () => void;
+  fetchNextPage: UseInfiniteQueryResult["fetchNextPage"];
 }
