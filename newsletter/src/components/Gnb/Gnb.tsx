@@ -20,6 +20,11 @@ const gnbStyle = css`
   background-color: white;
   z-index: 2;
 
+  @media (min-width: 1280px) {
+    width: 1280px;
+    margin: 0 auto;
+  }
+
   .gnb-button {
     width: auto;
     height: 45%;
@@ -52,6 +57,14 @@ const gnbStyle = css`
     width: 80%;
     height: 53%;
     border-radius: 16px;
+
+    @media (min-width: 1280px) {
+      width: 1024px;
+      height: 47%;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
   }
 `;
 

@@ -19,11 +19,19 @@ const newsCardStyle = css`
   line-height: 28px;
   position: relative;
 
+  @media (min-width: 1280px) {
+    height: auto;
+  }
+
   .star-icon {
     position: absolute;
     top: 11%;
     right: 5%;
     color: #6d6d6d;
+
+    @media (min-width: 1280px) {
+      top: 20%;
+    }
   }
 
   .news-headline {

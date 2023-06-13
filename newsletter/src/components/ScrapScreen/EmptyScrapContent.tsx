@@ -11,6 +11,10 @@ const emptyScrapContentStyle = css`
   align-items: center;
   margin-top: 90%;
 
+  @media (min-width: 1280px) {
+    margin-top: 35%;
+  }
+
   .empty-scrap-content {
     display: flex;
     flex-direction: column;
@@ -31,6 +35,9 @@ const emptyScrapContentStyle = css`
     height: 7vh;
     border-radius: 16px;
     font-weight: 600;
+    @media (min-width: 1280px) {
+      width: 30%;
+    }
   }
 `;
 

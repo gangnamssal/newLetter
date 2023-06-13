@@ -16,6 +16,11 @@ const footerStyle = (pathname: string) => css`
   position: fixed;
   color: white;
 
+  @media (min-width: 1280px) {
+    width: 1280px;
+    margin: 0 auto;
+  }
+
   .home {
     display: flex;
     flex-direction: column;
