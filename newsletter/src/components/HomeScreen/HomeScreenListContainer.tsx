@@ -3,6 +3,12 @@ import { useRef, useEffect } from "react";
 import { Props } from "./HomeScreenType";
 import NewsCard from "../NewsCard/NewsCard";
 
+// intersaction 옵션
+const intersectionOptions = {
+  rootMargin: "0px",
+  threshold: 0.5,
+};
+
 function HomeScreenListContainer({
   data,
   hasNextPage,
@@ -20,7 +26,7 @@ function HomeScreenListContainer({
         }
       }
     });
-  });
+  }, intersectionOptions);
 
   useEffect(() => {
     if (divRef?.current && data?.pages?.length) {
@@ -33,7 +39,9 @@ function HomeScreenListContainer({
     <>
       {data?.pages.map((news, index) => {
         return (
-          <div key={news._id}>
+          <div
+            key={`${news._id}+${news.abstract}+${news.headline}+${news.pub_date}`}
+          >
             <NewsCard data={news} divRef={divRef} index={index} />
           </div>
         );
