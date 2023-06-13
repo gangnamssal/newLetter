@@ -1,13 +1,15 @@
 /** @jsxImportSource @emotion/react */
-import { useRef } from "react";
 import { css } from "@emotion/react";
+import { useRef, useState, useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { GoSearch } from "@react-icons/all-files/go/GoSearch";
 import { BiCalendarCheck } from "@react-icons/all-files/bi/BiCalendarCheck";
 
 import GnbModal from "../Modal/GnbModal";
-import gnbStore, { Store } from "../../modules/GnbStore";
 import scrapGnbStore from "../../modules/ScrapGnbStore";
+import gnbStore, { Store } from "../../modules/GnbStore";
+import Toast from "../Toast/Toast";
+import toastStore from "../../modules/ToastStore";
 
 // 버튼 스타일
 const gnbStyle = css`
@@ -69,6 +71,7 @@ const gnbStyle = css`
 `;
 
 function Gnb({ store }: { store: Store }) {
+  const { toast, toastState } = toastStore();
   const { setStore } = gnbStore();
   const { setScrapStore } = scrapGnbStore();
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -114,7 +117,10 @@ function Gnb({ store }: { store: Store }) {
   return (
     <>
       <nav css={gnbStyle}>
-        {/* 버튼 */}
+        {/* 토스트 */}
+        <Toast toast={toast} toastState={toastState} />
+
+        {/* 모달 버튼 */}
         {buttons.map((button) => {
           return (
             <button

@@ -5,9 +5,11 @@ import { AiFillStar } from "@react-icons/all-files/ai/AiFillStar";
 import { AiOutlineStar } from "@react-icons/all-files/ai/AiOutlineStar";
 
 import { Props } from "./NewsCardType";
+import scrapStore from "../../modules/ScrapStore";
 import { Docs } from "../HomeScreen/HomeScreenType";
 import { getDayOfWeek } from "../../customs/getDayOfWeek";
 import { L, go, takeAll } from "../../customs/FunctionalJS";
+import toastStore from "../../modules/ToastStore";
 
 const newsCardStyle = css`
   width: 88%;
@@ -82,20 +84,29 @@ const getStorageItem = (key: string) => {
   return JSON.parse(localStorage.getItem(key) as string);
 };
 
-const test = () => {};
-
+// tsx를 return하는 함수
 function NewsCard({ data, divRef, index }: Props) {
   const [isScrap, setIsScrap] = useState<boolean>(false);
 
+  const { setStore } = scrapStore();
+  const { setToast, setToastState } = toastStore();
+
   // 기사 클릭 시 URL 이동 함수
-  const goToUrl = () => window.open(`${data.web_url}`);
+  const goToUrl = () => (window.location.href = data.web_url);
 
   // 스크랩 온 / 오프 함수
   const onScrap = (data: Docs, e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
 
     let updateLocalData;
+
     const storedObject = getStorageItem("scrap-data");
+
+    setToast(true);
+    setToastState(isScrap ? "delete" : "scrap");
+    setTimeout(() => {
+      setToast(false);
+    }, 800);
 
     switch (isScrap) {
       case true:
@@ -113,6 +124,7 @@ function NewsCard({ data, divRef, index }: Props) {
     }
     localStorage.removeItem("scrap-data");
     localStorage.setItem("scrap-data", JSON.stringify(updateLocalData));
+    setStore();
     setIsScrap((isScrap) => !isScrap);
   };
 
