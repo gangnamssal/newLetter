@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { HiHome } from "@react-icons/all-files/hi/HiHome";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { IoMdListBox } from "@react-icons/all-files/io/IoMdListBox";
 
 const footerStyle = (pathname: string) => css`
@@ -27,6 +27,7 @@ const footerStyle = (pathname: string) => css`
     justify-content: center;
     align-items: center;
     color: ${pathname === "/" ? "white" : "#6D6D6D"};
+    cursor: pointer;
     p {
       margin: 20% 0 0 0;
       font-size: 0.7rem;
@@ -40,6 +41,7 @@ const footerStyle = (pathname: string) => css`
     justify-content: center;
     align-items: center;
     color: ${pathname === "/" ? "#6D6D6D" : "white"};
+    cursor: pointer;
     p {
       margin: 20% 0 0 0;
       font-size: 0.7rem;

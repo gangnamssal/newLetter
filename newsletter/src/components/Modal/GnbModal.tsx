@@ -59,6 +59,7 @@ const gnbModalStyle = (open: boolean) => css`
       color: #c4c4c4;
       margin-bottom: ${open ? "0%" : "8%"};
       right: 10%;
+      cursor: pointer;
 
       @media (min-width: 1280px) {
         margin-bottom: 4%;
@@ -68,6 +69,7 @@ const gnbModalStyle = (open: boolean) => css`
     input {
       height: 5vh;
       margin-bottom: ${open ? "0%" : "10%"};
+      cursor: pointer;
 
       @media (min-width: 1280px) {
         margin-bottom: 5%;
@@ -120,9 +122,11 @@ const gnbModalStyle = (open: boolean) => css`
     font-size: 1rem;
     font-weight: 600;
     color: white;
+    cursor: pointer;
 
     @media (min-width: 1280px) {
       margin-top: 2%;
+      cursor: pointer;
     }
   }
 `;
