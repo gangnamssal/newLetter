@@ -1,5 +1,5 @@
-import { ReactJSXElement } from "@emotion/react/types/jsx-namespace";
 import { UseInfiniteQueryResult } from "@tanstack/react-query";
+import { ReactJSXElement } from "@emotion/react/types/jsx-namespace";
 
 export interface Children {
   children: React.PropsWithChildren<ReactJSXElement>;
@@ -44,12 +44,19 @@ interface Byline {
   person: Person[];
 }
 
+export interface Keywords {
+  major: string;
+  name: string;
+  rank: number;
+  value: string;
+}
+
 export interface Docs {
   abstract: string;
   byline: Byline;
   document_type: string;
   headline: Headline;
-  keywords: object[];
+  keywords: Keywords[];
   lead_paragraph: string;
   multimedia: object;
   news_desk: string;

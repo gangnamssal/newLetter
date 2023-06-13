@@ -1,8 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-
-import { IoMdListBox } from "@react-icons/all-files/io/IoMdListBox";
 import { useNavigate } from "react-router-dom";
+import { IoMdListBox } from "@react-icons/all-files/io/IoMdListBox";
 
 const emptyScrapContentStyle = css`
   display: flex;
@@ -10,6 +9,10 @@ const emptyScrapContentStyle = css`
   justify-content: center;
   align-items: center;
   margin-top: 90%;
+
+  @media (min-width: 1280px) {
+    margin-top: 35%;
+  }
 
   .empty-scrap-content {
     display: flex;
@@ -31,6 +34,10 @@ const emptyScrapContentStyle = css`
     height: 7vh;
     border-radius: 16px;
     font-weight: 600;
+    cursor: pointer;
+    @media (min-width: 1280px) {
+      width: 30%;
+    }
   }
 `;
 

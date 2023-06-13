@@ -15,10 +15,20 @@ const gnbModalStyle = (open: boolean) => css`
   width: 100%;
   height: 100%;
 
+  @media (min-width: 1280px) {
+    width: 90%;
+    margin: 0 auto;
+  }
+
   p {
     margin: 0 0 4% 0;
     font-weight: 600;
     font-size: 1rem;
+
+    @media (min-width: 1280px) {
+      margin-bottom: 2%;
+      font-size: 1.1rem;
+    }
   }
 
   input {
@@ -32,6 +42,11 @@ const gnbModalStyle = (open: boolean) => css`
     &::placeholder {
       color: #c4c4c4;
     }
+
+    @media (min-width: 1280px) {
+      margin-bottom: 5%;
+      font-size: 1rem;
+    }
   }
 
   /* 날짜 input 스타일 */
@@ -44,12 +59,21 @@ const gnbModalStyle = (open: boolean) => css`
       color: #c4c4c4;
       margin-bottom: ${open ? "0%" : "8%"};
       right: 10%;
+      cursor: pointer;
+
+      @media (min-width: 1280px) {
+        margin-bottom: 4%;
+      }
     }
 
     input {
       height: 5vh;
-      margin-bottom: 0;
       margin-bottom: ${open ? "0%" : "10%"};
+      cursor: pointer;
+
+      @media (min-width: 1280px) {
+        margin-bottom: 5%;
+      }
 
       &:disabled {
         background-color: white;
@@ -61,8 +85,15 @@ const gnbModalStyle = (open: boolean) => css`
   .MuiDateCalendar-root {
     width: 95%;
 
+    @media (min-width: 1280px) {
+      width: 30%;
+    }
+
     .MuiYearCalendar-root {
       width: 95%;
+      @media (min-width: 1280px) {
+        width: 30%;
+      }
     }
   }
 
@@ -74,6 +105,11 @@ const gnbModalStyle = (open: boolean) => css`
     padding: 0 2% 0 2%;
     font-weight: 400;
     cursor: pointer;
+
+    @media (min-width: 1280px) {
+      font-size: 1rem;
+      height: 10%;
+    }
   }
 
   .gnb-modal-button {
@@ -86,6 +122,12 @@ const gnbModalStyle = (open: boolean) => css`
     font-size: 1rem;
     font-weight: 600;
     color: white;
+    cursor: pointer;
+
+    @media (min-width: 1280px) {
+      margin-top: 2%;
+      cursor: pointer;
+    }
   }
 `;
 

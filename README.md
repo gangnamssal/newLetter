@@ -1,3 +1,39 @@
+## 프로젝트 실행 가이드
+
+---
+
+```
+1. Zip 파일을 해체한다.
+2. npm i로 node_modules를 설치한다.
+3. npm run start를 통해 실행한다.
+4. 모바일 뷰로 확인하면 더 정확히 확인할 수 있습니다.
+4-1. 모바일 뷰를 했을 때 가로 스크롤(모바일 뷰 버그)이 생기는 경우 개발자 모드를 켠 
+     상태에서 모바일 뷰를 해체하고 새로고침을 한 뒤 다시 모바일 뷰를 실행한다.
+4-2. 가로 길이 : 375px, 세로 길이 : 812px을 맞춰서 확인하면 더 정확하다.
+5. 만약 429에러가 발생하는 경우 API 요청이 너무 많아 API_key를 변경해야 하므로 다시 시도해보거    나 .env 파일에 새로운 API키를 넣어서 실행하면 된다.
+6. 필터링 시 API 헤드라인을 영어로 작성해야 필터링이 가능합니다. => newYork times API라 영어로 검색이 가능함.
+```
+
+
+
+### 결과
+
+---
+
+![전체동작과정](.\캡쳐이미지\전체동작과정.gif)
+
+
+
+### 보완할 점
+
+---
+
+- CRA(Create React App)를 사용하지 않고, Vite를 활용하여 프로젝트 생성
+
+- 커뮤니티 기능 및 더욱 세밀한 필터링 추가 등 추가적인 기능을 도입
+
+
+
 ## 23.06.06
 
 ---
@@ -29,7 +65,10 @@
    npm i axios
    
    // datepicker
-   npm install @mui/x-date-pickers dayjs @mui/material
+   npm i @mui/x-date-pickers dayjs @mui/material
+   
+   // ErrorBoundary
+   npm i react-error-boundary
    ```
 
 3. 초기 폴더 구조
@@ -269,7 +308,7 @@ export type NationObject = {
 
   - 참고 : https://blog.hangyeong.com/17
 
-  ```
+  ```typescript
   1. 현재 페이지에서 URL 열기
   - window.location.href="링크"
   
@@ -286,3 +325,51 @@ export type NationObject = {
 
 - Gnb 재사용을 위해 코드 수정
 - scrap 페이지 완료
+
+
+
+## 23.06.13
+
+---
+
+### 1. 구현
+
+- 1280px 크기의 화면 CSS 설정 완료
+
+- ErrorBoundary 적용
+
+  - 코드에서 `fallbackRender` 대신 `fallback`을 사용할 수 있지만, `fallback`은 간단한 예외 대응 컴포넌트만 받으며 에러 정보나 `reset` 함수를 제공하지 않는다. 에러 경계 내에서 `reset` 함수를 특정 액션(예: 버튼 클릭)에 결합시키기 위해서는, `fallbackRender`를 사용하여 에러 정보와 `resetErrorBoundary` 함수에 접근할 수 있어야 합니다.
+
+  ```typescript
+  import { ErrorBoundary } from 'react-error-boundary';
+  import { useQueryErrorResetBoundary } from 'react-query';
+  
+  function HomeScreen() {
+    const { reset, isReset } = useQueryErrorResetBoundary();
+  
+    return (
+      <>
+        <ErrorBoundary
+          onReset={reset}
+          fallbackRender={({ resetErrorBoundary }) => (
+            <ErrorMessage reset={resetErrorBoundary} />
+          )}
+        >
+          <Suspense fallback={<Loading />}>
+            <HomeScreenFetcer>
+              <HomeScreenListContainer />
+            </HomeScreenFetcer>
+          </Suspense>
+        </ErrorBoundary>
+      </>
+    );
+  }
+  
+  export default HomeScreen;
+  ```
+
+- 스크랩 데이터 필터링 완료
+- 스크랩 했을 때 나오는 토스트 구현 완료
+
+
+

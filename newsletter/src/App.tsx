@@ -15,6 +15,10 @@ const globalStype = css`
     padding: 0;
     box-sizing: border-box;
     background-color: #f0f1f4;
+    @media (min-width: 1280px) {
+      width: 1280px;
+      margin: 13vh auto;
+    }
   }
 `;
 
