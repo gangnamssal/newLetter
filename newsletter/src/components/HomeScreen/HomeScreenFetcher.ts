@@ -8,7 +8,7 @@ import { getNowDate } from "../../customs/getNowDate";
 import gnbStore, { Store } from "../../modules/GnbStore";
 
 // 영문 이름을 담은 객체
-const changeNationName: ChangeNationName = {
+export const changeNationName: ChangeNationName = {
   대한민국: "Korea",
   중국: "China",
   일본: "Japan",
